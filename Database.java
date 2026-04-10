@@ -3,7 +3,7 @@ public class Database{
     Guest guests[];
     Room rooms[];
     Reservation reservations[];
-    Invoice invoices[];
+     Invoice invoices[];
     Admin admins[];
     Receptionist receptionists[];
 
