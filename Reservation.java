@@ -62,4 +62,12 @@ private LocalDate checkOutDate;
         this.roomRefrence = roomRefrence;
 
     }
+    public void showReservationDetails() {
+        System.out.println("======= Reservation Details =======");
+        System.out.println("Guest Reference: " + guestRefrence );
+        System.out.println("Room Reference:  " + roomRefrence);
+        System.out.println("Check-in Date:   " + checkInDate);
+        System.out.println("Check-out Date:  " + checkOutDate);
+        System.out.println("Status:          " + reservationStatus);
+    }
 }
