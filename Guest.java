@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 import java.util.*;
 
-public class Guest{
+public class Guest extends User{
 
     enum genders{
         male,
@@ -10,13 +10,11 @@ public class Guest{
 
     Scanner scan = new Scanner(System.in);
 
-    private String username;
-    private String password; // minimum 8 characters long, checked during registration
-    private LocalDate dateOfBirth;
     private double balance;
     private String address;
     private genders gender;
     private roomPreferences roomPreference;
+    private int guestcount = 0;
 
 
     Guest(String username, String password, LocalDate dateOfBirth, double balance, String address, genders gender, roomPreferences roomPreference){
@@ -27,9 +25,12 @@ public class Guest{
         address = address;
         gender = gender;
         roomPreference = roomPreference;
+        guestcount++;
+
+
     }
 
-    void register(){
+    public static void register(){
         System.out.print("Please enter your username: ");
         String name = scan.nextLine();
 
@@ -99,6 +100,10 @@ public class Guest{
         gender genders = gender.valueof(genderstr);
 
         Guest(name,password,dateOfBirth,balance,address,genders,roompreferences);
+
+    }
+
+    public static void login(){
 
     }
 
