@@ -7,5 +7,5 @@ public class Database{
     Admin admins[];
     Receptionist receptionists[];
 
-
+    public static User currentuser;
 }

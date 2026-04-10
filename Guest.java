@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 import java.util.*;
 
-public class Guest extends User{
+public class Guest extends User implements Payable{
 
     enum genders{
         male,
@@ -32,7 +32,7 @@ public class Guest extends User{
 
     public static void register(){
         System.out.print("Please enter your username: ");
-        String name = scan.nextLine();
+        String name = scan.next();
 
         System.out.print("Please enter your password, it must be at least 8 characters long: ");
         String password = scan.next();
@@ -105,6 +105,40 @@ public class Guest extends User{
 
     public static void login(){
 
+        System.out.print("Please enter your username");
+        String username = scan.next();
+
+
+        System.out.print("Please enter your password");
+        String password = scan.next();
+
+        for (int i = 0; i < guestcount; i++){
+
+            if (guests[i].username == username && guests[i].password == password){
+                bool found = true;
+                Database.currentuser = guests[i];
+            }
+        }
+
+        if (not found){
+            System.out.println("Invalid login, if you would like to terminate enter x, otherwise try again.")
+        }
     }
 
+    void processpayment(double amount){
+
+        balance-=amount;
+        System.out.println("Guess payment complete. New balance: " + balance);
+    }
+
+    boolean funds(double amount){
+
+        if (amount>balance){
+            return false;
+        }
+
+        else{
+            return true;
+        }
+    }
 }
