@@ -1,8 +1,6 @@
 import java.time.LocalDate;
 import java.util.*;
 
-
-
 public class Guest{
 
     enum genders{
@@ -21,13 +19,14 @@ public class Guest{
     private roomPreferences roomPreference;
 
 
-    Guest(String username, String password, LocalDate dateOfBirth, double balance, String address, genders gender){
+    Guest(String username, String password, LocalDate dateOfBirth, double balance, String address, genders gender, roomPreferences roomPreference){
         username = username;
         password = password;
         dateOfBirth = dateOfBirth;
         balance = balance;
         address = address;
         gender = gender;
+        roomPreference = roomPreference;
     }
 
     void register(){
@@ -74,11 +73,33 @@ public class Guest{
         System.out.print("Please enter your address: ");
         String address = scan.nextLine();
 
+        System.out.print("Please enter your preferred room type: ");
+        String roomtype = scan.next();
 
+        System.out.print("Please enter your preferred floor: ");
+        int floor = scan.nextInt();
 
+        roomPreferences roompreferences;
+        roompreferences.roomtype = roomtype;
+        roompreferences.floor = floor;
 
+        System.out.print("Please enter your gender, must be either male or female: ");
+        while (true){
+            String genderstr = scan.next();
+
+            if (genderstr.toLowerCase != "male" && genderstr.toLowerCase != "female"){
+                System.out.print("Invalid gender, please try again");
+                String genderstr = scan.next();
+            }
+            else{
+                break;
+            }
+        }
+
+        gender genders = gender.valueof(genderstr);
+
+        Guest(name,password,dateOfBirth,balance,address,genders,roompreferences);
 
     }
-
 
 }
