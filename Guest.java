@@ -1,21 +1,24 @@
 import java.time.LocalDate;
 import java.util.*;
 
-enum genders{
-    male,
-    female
-}
+
 
 public class Guest{
 
+    enum genders{
+        male,
+        female
+    }
+
     Scanner scan = new Scanner(System.in);
 
-    String username;
-    String password; // minimum 8 characters long, checked during registration
-    LocalDate dateOfBirth;
-    double balance;
-    String address;
-    genders gender;
+    private String username;
+    private String password; // minimum 8 characters long, checked during registration
+    private LocalDate dateOfBirth;
+    private double balance;
+    private String address;
+    private genders gender;
+    private roomPreferences roomPreference;
 
 
     Guest(String username, String password, LocalDate dateOfBirth, double balance, String address, genders gender){
@@ -70,6 +73,8 @@ public class Guest{
 
         System.out.print("Please enter your address: ");
         String address = scan.nextLine();
+
+
 
 
 
