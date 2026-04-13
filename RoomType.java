@@ -1,6 +1,6 @@
 public class RoomType {
     private String name;
-    private double pricePerNight
+    private double pricePerNight;
 
     public RoomType(String name, double pricePerNight) {
         setName(name);
