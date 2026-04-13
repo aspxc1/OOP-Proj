@@ -6,6 +6,7 @@ public class RoomType {
         SUITE
     }
     private types name;
+    private String name;
     private double pricePerNight;
 
     public RoomType(String name, double pricePerNight) {
