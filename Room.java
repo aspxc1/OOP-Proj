@@ -5,16 +5,19 @@ public class Room {
     private RoomType roomType;
     private List<Amenity> amenities;
     private boolean isAvailable;
+    public static int roomCount = 0;
+
 
     public Room(int roomNumber, RoomType roomType, List<Amenity> amenities) {
-        setRoomNumber(roomNumber);
+        setRoomNumber(roomCount);
         setRoomType(roomType);
         setAmenities(amenities);
         this.isAvailable = true;
+        roomCount++;
     }
 
-    public void setRoomNumber(int roomNumber) {
-        if (roomNumber <= 0) {
+    private void setRoomNumber(int roomNumber) {
+        if (roomNumber < 0) {
             throw new IllegalArgumentException("Room number must be positive.");
         }
         this.roomNumber = roomNumber;

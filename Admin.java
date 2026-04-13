@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.util.*;
+
 public class Admin extends Staff{
  public Admin(String username, String password, LocalDate dateOfBirth, int workingHours){
   super( username, password, Role.ADMIN, dateOfBirth, workingHours);
