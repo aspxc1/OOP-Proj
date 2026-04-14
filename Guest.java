@@ -150,29 +150,7 @@ public class Guest extends User implements Payable{
     }
 
     public static void login(){
-
-        Scanner scan = new Scanner(System.in);
-
-        System.out.print("Please enter your username");
-        String username = scan.next();
-
-
-        System.out.print("Please enter your password");
-        String password = scan.next();
-
-        boolean found = false;
-        while ( !found ){
-
-            for (int i = 0; i < guestcount; i++) {
-
-                if (Database.getGuest(i).getUsername().equals(username) && Database.getGuest(i).getPassword().equals(password)) {
-                    found = true;
-                    Database.setCurrentUser(Database.getGuest(i));
-                }
-            }
-            if ( !found )
-                System.out.println("Invalid login, please try again");
-        }
+        login(Database.getGuests());
     }
 
     public void processpayment(double amount){

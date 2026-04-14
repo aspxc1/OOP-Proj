@@ -6,6 +6,11 @@ public class Admin extends Staff{
   super( username, password, Role.ADMIN, dateOfBirth, workingHours);
  }
 
+ public static void login(){
+  login(Database.getAdmins());
+ }
+
+
  public void createRoom(Room room, List<Room> roomDatabase){
   roomDatabase.add(room);
  }
