@@ -9,10 +9,11 @@ public class Database{
     private final static List<Invoice> invoices = new ArrayList<>();
     private final static List<Admin> admins = new ArrayList<>();
     private final static List<Receptionist> receptionists = new ArrayList<>();
+    private final static List<User> users = new ArrayList<>();
 
     private static User currentUser;
 
-    // Current User
+    //User
     public static User getCurrentUser() {
         return currentUser;
     }
@@ -20,6 +21,11 @@ public class Database{
     public static void setCurrentUser(User currentuser) {
         Database.currentUser = currentuser;
     }
+
+    public static List<User> getUsers() {
+        return users;
+    }
+
 
     // Guest
     public static void addGuest(Guest g){
@@ -32,6 +38,10 @@ public class Database{
         else
             return null;
     }
+    public static List<Guest> getGuests(){
+        return guests;
+    }
+
 
     // Room
     public static void addRoom(Room room){
@@ -43,6 +53,10 @@ public class Database{
         else
             return null;
     }
+    public static List<Room> getRooms(){
+        return rooms;
+    }
+
 
     // Reservation
     public static void addReservation(Reservation reservation){
@@ -54,6 +68,10 @@ public class Database{
         else
             return null;
     }
+    public static List<Reservation> getReservations(){
+        return reservations;
+    }
+
 
     // Invoice
     public static void addInvoice(Invoice invoice){
@@ -65,6 +83,10 @@ public class Database{
         else
             return null;
     }
+    public static List<Invoice> getInvoices(){
+        return invoices;
+    }
+
 
     // Admin
     public static void addAdmin(Admin admin){
@@ -76,6 +98,10 @@ public class Database{
         else
             return null;
     }
+    public static List<Admin> getAdmins(){
+        return admins;
+    }
+
 
     // Receptionist
     public static void addReceptionist(Receptionist receptionist){
@@ -87,6 +113,10 @@ public class Database{
         else
             return null;
     }
+    public static List<Receptionist> getReceptionists(){
+        return receptionists;
+    }
+
 
 
 }

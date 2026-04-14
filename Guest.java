@@ -3,7 +3,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.time.*;
 
-public class Guest extends User implements Payable{
+public class Guest extends User{
 
     public static enum Genders{
         male,
@@ -150,41 +150,9 @@ public class Guest extends User implements Payable{
     }
 
     public static void login(){
-
-        Scanner scan = new Scanner(System.in);
-
-        System.out.print("Please enter your username");
-        String username = scan.next();
-
-
-        System.out.print("Please enter your password");
-        String password = scan.next();
-
-        boolean found = false;
-        while ( !found ){
-
-            for (int i = 0; i < guestcount; i++) {
-
-                if (Database.getGuest(i).getUsername().equals(username) && Database.getGuest(i).getPassword().equals(password)) {
-                    found = true;
-                    Database.setCurrentUser(Database.getGuest(i));
-                }
-            }
-            if ( !found )
-                System.out.println("Invalid login, please try again");
-        }
+        login(Database.getGuests());
     }
 
-    public void processpayment(double amount){
-
-        balance-=amount;
-        System.out.println("Guess payment complete. New balance: " + balance);
-    }
-
-    public boolean validatefunds(double amount){
-
-        return ( !(amount>balance) );
-    }
 
     public void viewavailablerooms(){
 
@@ -279,14 +247,15 @@ public class Guest extends User implements Payable{
             System.out.println("There is no such reservation under you.");
     }
 
-    public double calculatetotal(int reservationindex){
-        int roomref = Database.getReservation(reservationindex).getRoomRefrence();
 
-        long daysBetween = ChronoUnit.DAYS.between(Database.getReservation(reservationindex).getCheckInDate(), Database.getReservation(reservationindex).getCheckOutDate());
-        return Database.getRoom(roomref).getRoomType().getPricePerNight() * daysBetween;
-    }
+    public void checkoutandPay(double total , Payable bill){
 
-    public void checkout(int reservationindex){
+        System.out.println("Please choose your desired payment method: ");
+        Invoice.showPaymentMethods();
+        Payable.PaymentMethod method = Payable.PaymentMethod.valueOf(scan.next().toUpperCase());
+
+        bill.processpayment(total, method);
+
 
     }
 }

@@ -19,7 +19,6 @@ public abstract class User{
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
-    // Getters
 
     //Setters
 
@@ -35,5 +34,30 @@ public abstract class User{
         this.dateOfBirth = dateOfBirth;
     }
 
-    //Setters
+
+    public static void login(List<? extends User> users){
+
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("Please enter your username");
+        String username = scan.next();
+
+
+        System.out.print("Please enter your password");
+        String password = scan.next();
+
+        boolean found = false;
+
+            for (User user : users) {
+
+                if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                    found = true;
+                    Database.setCurrentUser(user);
+                    return;
+                }
+            }
+            if ( !found )
+                System.out.println("Invalid login, please try again");
+    }
+
 }

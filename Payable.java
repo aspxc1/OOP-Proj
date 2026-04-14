@@ -1,7 +1,9 @@
 public interface Payable {
 
-    void processpayment(double amount);
-    boolean validatefunds(double amount);
-    double calculatetotal(int reservationindex);
+    enum PaymentMethod{
+        CASH, CREDIT_CARD, ONLINE
+    }
+
+    void processpayment(double amount, PaymentMethod method) ;
 
 }
