@@ -36,7 +36,7 @@ public class Database{
         if (index > 0 && index < guests.size())
             return guests.get(index);
         else
-            return null;
+            throw new IndexOutOfBoundsException("Guest with such index does not exist");
     }
     public static List<Guest> getGuests(){
         return guests;
@@ -51,7 +51,7 @@ public class Database{
         if (index > 0 && index < rooms.size())
             return rooms.get(index);
         else
-            return null;
+            throw new IndexOutOfBoundsException("Room with such index does not exist");
     }
     public static List<Room> getRooms(){
         return rooms;
@@ -66,7 +66,7 @@ public class Database{
         if (index > 0 && index < reservations.size())
             return reservations.get(index);
         else
-            return null;
+            throw new IndexOutOfBoundsException("Reservation with such index does not exist");
     }
     public static List<Reservation> getReservations(){
         return reservations;
@@ -81,7 +81,7 @@ public class Database{
         if (index > 0 && index < invoices.size())
             return invoices.get(index);
         else
-            return null;
+            throw new IndexOutOfBoundsException("Invoice with such index does not exist");
     }
     public static List<Invoice> getInvoices(){
         return invoices;
@@ -96,7 +96,7 @@ public class Database{
         if (index > 0 && index < admins.size())
             return admins.get(index);
         else
-            return null;
+            throw new IndexOutOfBoundsException("Admin with such index does not exist");
     }
     public static List<Admin> getAdmins(){
         return admins;
@@ -111,7 +111,7 @@ public class Database{
         if (index > 0 && index < receptionists.size())
             return receptionists.get(index);
         else
-            return null;
+            throw new IndexOutOfBoundsException("Receptionist with such index does not exist");
     }
     public static List<Receptionist> getReceptionists(){
         return receptionists;

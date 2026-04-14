@@ -32,8 +32,9 @@ public class Reservation {
         this.reservationStatus = reservationStatus;
     }
 
-    public LocalDate getCheckInDate() {
+    public LocalDate getCheckInDate(){
         return this.checkInDate;
+
     }
 
     public void setCheckInDate( LocalDate checkInDate) {

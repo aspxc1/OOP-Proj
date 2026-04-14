@@ -43,7 +43,7 @@ public class Invoice implements Payable{
 
     public static void showPaymentMethods(){
         System.out.println("----payment methods----");
-        System.out.println("CASH\nCREDIT_CARD\nONLINE");
+        System.out.println("CASH\nCREDIT_CARD\nONLINE\n");
     }
 
     public void processpayment(double amount,  PaymentMethod method) {

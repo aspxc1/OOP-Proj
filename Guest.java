@@ -68,7 +68,7 @@ public class Guest extends User{
 
 
 
-    public static void register(){
+    public static void register() {
 
         Scanner scan = new Scanner(System.in);
 
@@ -118,11 +118,37 @@ public class Guest extends User{
         System.out.print("Please enter your preferred room type's name: ");
         String roomtypename = scan.next();
 
-        System.out.print("Please enter your preferred room price per night: ");
-        double price = scan.nextDouble();
+        double price = 0;
+        try {
+            System.out.print("Please enter your preferred room price per night: ");
+            price = scan.nextDouble();
+            while (price <= 0) {
+                System.out.print("Price must be positive, please try again: ");
+                price = scan.nextDouble();
+            }
 
-        System.out.print("Please enter your preferred floor: ");
-        int floor = scan.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("You must enter a valid room price per night.");
+            scan.nextLine();
+        }
+
+        int floor = 0;
+        try {
+            System.out.print("Please enter your preferred floor (0-7): ");
+            floor = scan.nextInt();
+
+            if (floor < 0 || floor > 7) {
+                throw new IllegalArgumentException("You must enter a valid room floor number.");
+            }
+        }
+        catch (IllegalArgumentException e) {
+            System.out.print(e.getMessage());
+        }
+        catch (InputMismatchException a){
+            System.out.println("You must enter a number.");
+            scan.nextLine();
+        }
+
 
         RoomType roomtype = new RoomType(roomtypename,price);
 
@@ -130,12 +156,12 @@ public class Guest extends User{
 
 
         System.out.print("Please enter your gender, must be either male or female: ");
-        String genderstr;
+        String genderstr,genderupper,genderlower;
         Genders gender;
-        String genderlower;
         while (true){
             genderstr = scan.next();
             genderlower = genderstr.toLowerCase();
+            genderupper = genderstr.toUpperCase();
 
             if (!genderlower.equals("male") && !genderlower.equals("female")){
                 System.out.print("Invalid gender, please try again: ");
@@ -144,7 +170,7 @@ public class Guest extends User{
                 break;
             }
         }
-        gender = Genders.valueOf(genderlower);
+        gender = Genders.valueOf(genderupper);
         Guest guest = new Guest(name,password,dateOfBirth,balance,address,gender,roompreferences,guestcount);
 
     }
@@ -154,19 +180,24 @@ public class Guest extends User{
     }
 
 
-    public void viewavailablerooms(){
+    public void viewavailablerooms() throws RoomNotAvailableException{
 
+        boolean found = false;
         System.out.println("Here are the current available rooms: ");
         for (int i = 0; i < Room.roomCount; i++){
             Room room = Database.getRoom(i);
 
-            if (room.isAvailable())
+            if (room.isAvailable()){
                 room.displayRoomDetails();
+                found = true;}
+        }
+        if (!found){
+            throw new RoomNotAvailableException("No rooms are currently available.");
         }
 
     }
 
-    public void makereservation() {
+    public void makereservation() throws RoomNotAvailableException {
 
         Scanner scan = new Scanner(System.in);
 
@@ -208,7 +239,7 @@ public class Guest extends User{
             }
         }
         if (!found) {
-           System.out.println("Sorry, there are no available rooms, a reservation cannot currently be made.");
+           throw new RoomNotAvailableException("No rooms are currently available.");
         }
 
         if (found){
@@ -221,7 +252,7 @@ public class Guest extends User{
 
     public void viewreservation(){
         boolean found = false;
-        for (int i = 0; i < Reservation.reservationCount; i++) {
+        for (int i = 0; i < Database.getReservations().size(); i++) {
 
             if (Database.getReservation(i).getGuestReference() == this.index && (Database.getReservation(i).getReservationStatus() != Reservation.ReservationStatus.CANCELLED)) {
                 found = true;
@@ -236,11 +267,13 @@ public class Guest extends User{
         }
     }
 
-    public void cancelreservation(int reservationindex){
+    public void cancelreservation(int reservationindex) throws ReservationAlreadyCancelledException{
 
         Reservation reservation = Database.getReservation(reservationindex);
+        if (reservation.getReservationStatus() == Reservation.ReservationStatus.CANCELLED)
+            throw new ReservationAlreadyCancelledException("Reservation is already cancelled.");
 
-        if (( reservation != null ) && reservation.getGuestReference() == this.index && (reservation.getReservationStatus() != Reservation.ReservationStatus.CANCELLED)) {
+        if (reservation.getGuestReference() == this.index) {
             reservation.setReservationStatus(Reservation.ReservationStatus.CANCELLED);
         }
         else
@@ -248,13 +281,21 @@ public class Guest extends User{
     }
 
 
-    public void checkoutandPay(double total , Payable bill){
+    public void checkoutandPay(double total , Payable bill) throws InvalidPaymentException{
 
         System.out.println("Please choose your desired payment method: ");
         Invoice.showPaymentMethods();
-        Payable.PaymentMethod method = Payable.PaymentMethod.valueOf(scan.next().toUpperCase());
 
-        bill.processpayment(total, method);
+        if (this.balance < total)
+            throw new InvalidPaymentException("Insufficient balance.");
+
+        String method = scan.next().toUpperCase();
+        if (!method.equals("CREDIT_CARD") && !method.equals("CASH") && !method.equals("ONLINE"))
+            throw new InvalidPaymentException("Invalid payment method.");
+
+        Payable.PaymentMethod paymentMethod = Payable.PaymentMethod.valueOf(method);
+
+        bill.processpayment(total, paymentMethod);
 
 
     }
