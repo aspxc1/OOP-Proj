@@ -32,4 +32,27 @@ public class Receptionist extends Staff {
     }
     System.out.println("Error: Could not find Reservation ID " + targetResId);
  }
+
+ public void displayMenu(List<Reservation> allRes) {
+   Scanner input = new Scanner(System.in);
+   System.out.println("\n    Receptionist Desk ");
+   System.out.println("1. Check-In\n2. Check-Out\n3. View All");
+   System.out.print("Choice: ");
+   int choice = input.nextInt();
+
+   switch (choice) {
+    case 1:
+      System.out.print("Enter Reservation ID: ");
+      processCheckIn(input.nextInt(), allRes);
+       break;
+    case 2:
+      System.out.print("Enter Reservation ID: ");
+      processCheckOut(input.nextInt(), allRes);
+       break;
+    case 3:
+      viewAllRes(allRes);
+       break;
+       }
+   }
+
 }
