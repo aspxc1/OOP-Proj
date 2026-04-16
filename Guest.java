@@ -256,7 +256,7 @@ public class Guest extends User{
                 found = true;
                 System.out.println("Checkin Date: " + Database.getReservation(i).getCheckInDate());
                 System.out.println("Checkout Date: " + Database.getReservation(i).getCheckOutDate());
-                Database.getRoom(Database.getReservation(i).getRoomRefrence()).displayRoomDetails();
+                Database.getRoom(Database.getReservation(i).getRoomReference()).displayRoomDetails();
                 System.out.println("Reservation Status: " + Database.getReservation(i).getReservationStatus());
             }
         }
@@ -270,7 +270,7 @@ public class Guest extends User{
         int reservationindex = 0;
         boolean found = false;
         for (int i = 0; i < Database.getReservations().size(); i++) {
-            if (Database.getReservation(i).getRoomRefrence() == roomnumber) {
+            if (Database.getReservation(i).getRoomReference() == roomnumber) {
                 reservationindex = i;
                 found = true;
                 break;
@@ -309,6 +309,18 @@ public class Guest extends User{
         bill.processpayment(total, paymentMethod);
 
 
+    }
+
+    public void displayDetails(){
+        System.out.println("Username: " + getUsername());
+        System.out.println("Password: " + getPassword());
+        System.out.println("Date of Birth: " + getDateOfBirth());
+        System.out.println("Balance: " + getBalance());
+        System.out.println("Address: " + getAddress());
+        System.out.println("Gender: " + getGender());
+        System.out.println("Room type name preference: " + roomPreference.getRoomType().getName());
+        System.out.println("Room price per night preference: " + roomPreference.getRoomType().getPricePerNight());
+        System.out.println("Floor preference: " + roomPreference.getFloor());
     }
 }
 

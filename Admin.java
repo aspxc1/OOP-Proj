@@ -12,16 +12,14 @@ public class Admin extends Staff{
  }
 
 
- public void createRoom(Room room, List<Room> roomDatabase){
-  roomDatabase.add(room);
+ public void createRoom(RoomType roomType, List<Amenity> amenities){
+
+     Room room = new Room(roomType, amenities);
+     Database.getRooms().add(room);
  }
 
- public Room readRoom(int roomNumber, List<Room> roomDatabase){
-  for(Room room : roomDatabase){ 
-     if (room.getRoomNumber() == roomNumber){
-       return room;
-   }
-  } return null;
+ public Room readRoom(int roomNumber){
+     return Database.getRoom(roomNumber);
  }
  
  public void updateRoom(Room newRoom, List<Room> roomDatabase){
@@ -33,96 +31,58 @@ public class Admin extends Staff{
   }
  }
  
- public void deleteRoom(int roomNumber, List<Room> roomDatabase){
-  roomDatabase.removeIf(room -> room.getRoomNumber() == roomNumber);
+ public void deleteRoom(int roomNumber){
+  Database.getRooms().remove(roomNumber);
+  Room.roomCount--;
  }
 
- public void createAmenity(Amenity amenity, List<Amenity> amenityDatabase){
-  amenityDatabase.add(amenity);
+ public void createAmenity(String name, int roomnumber){
+
+     Amenity amenity = new Amenity(name);
+     Database.getRoom(roomnumber).getAmenities().add(amenity);
  }
 
- public Amenity readAmenity(String amenityId, List<Amenity> amenityDatabase){
-  for(Amenity amenity : amenityDatabase){ 
-     if (amenity.getName().equals(amenityId)){
-       return amenity;
-   }
-  } return null;
+ public List <Amenity> readAmenities(int roomnumber){
+  return Database.getRoom(roomnumber).getAmenities();
  }
  
- public void updateAmenity(Amenity newAmenity, List<Amenity> amenityDatabase){
-  for(int i=0; i<amenityDatabase.size(); i++){
-   if(amenityDatabase.get(i).getName().equals(newAmenity.getAmenityId())){
-    amenityDatabase.set(i, newAmenity);
-    return;//To exit when reaching the right amenityId to not going through all of it
-   }
-  }
- }
- 
- public void deleteAmenity(String amenityId, List<Amenity> amenityDatabase){
-  amenityDatabase.removeIf(amenity -> amenity.getName().equals(amenityId));
- }
+ public void updateAmenity(Amenity oldAmenity, String newName, int roomnumber) throws AmenityNotFoundException{
 
- public void createRoomType(RoomType roomType, List<RoomType> roomTypeDatabase){
-  roomTypeDatabase.add(roomType);
- }
+     boolean found = false;
+     Room room = Database.getRoom(roomnumber);
+     for(int i=0; i < room.getAmenities().size(); i++){
 
- public RoomType readRoomType(String roomTypeName, List<RoomType> roomTypeDatabase){
-  for(RoomType roomType : roomTypeDatabase){ 
-     if (roomType.getName().equals(roomTypeName)){
-       return roomType;
-   }
-  } return null;
- }
- 
- public void updateRoomType(RoomType newRoomType, List<RoomType> roomTypeDatabase){
-  for(int i=0; i<roomTypeDatabase.size(); i++){
-   if(roomTypeDatabase.get(i).getName().equals(newRoomType.getRoomTypeName())){
-    roomTypeDatabase.set(i, newRoomType);
-    return;//To exit when reaching the right roomTypeName to not going through all of it
-   }
-  }
- }
- 
- public void deleteRoomType(String roomTypeName, List<RoomType> roomTypeDatabase){
-  roomTypeDatabase.removeIf(roomType -> roomType.getName().equals(roomTypeName));
- }
-
- public void updateRoomType(int roomNumber, String newType, List<Room> rooms) {
-  for (Room r : rooms) {
-   if (r.getRoomNumber() == roomNumber) {
-      RoomType updatedType = new RoomType(newType, r.getRoomType().getPricePerNight());
-      r.setRoomType(updatedType);
-      return;
-      }
-   }
- }
-
- public void displayMenu(List<Room> allRooms, List<Amenity> allAmenities) {
-  Scanner input = new Scanner(System.in);
-  System.out.println("\n    Admin Management    ");
-  System.out.println("1. Add Room\n2. View Rooms\n3. Delete Room");
-  System.out.print("Choice: ");
-  int choice = input.nextInt();
-
-  switch (choice) {
-      case 1:
-        System.out.print("Number: "); int num = input.nextInt();
-        System.out.print("Type: "); String type = input.next();
-        System.out.print("Price: "); double price = input.nextDouble();
-          RoomType roomType = new RoomType(type, price);
-          Room room = new Room(num, roomType, allAmenities);
-          createRoom(room, allRooms);
-          break;
-       case 2:
-        viewAllRooms(allRooms);
-            break;
-       case 3:
-        System.out.print("Room Number to delete: ");
-        int toDelete = input.nextInt();
-        deleteRoom(toDelete, allRooms);
-            break;
+        if (room.getAmenities().get(i).getName().equals(oldAmenity.getName())) {
+        room.getAmenities().get(i).setName(newName);
+        found = true;
+        return;
         }
-    }
+     }
+     throw new AmenityNotFoundException(oldAmenity.getName());
+ }
+ 
+ public void deleteAmenity(String amenityId, int roomnumber){
+  Database.getRoom(roomnumber).getAmenities().removeIf(amenity -> amenity.getName().equals(amenityId));
+ }
+
+ public void createRoomType(String name, double price){
+     RoomType roomType = new RoomType(name, price);
+ }
+
+ public RoomType readRoomType(int roomNumber){
+    return Database.getRoom(roomNumber).getRoomType();
+ }
+
+ 
+ public void deleteRoomType(RoomType roomType){
+    Database.getRoomTypes().remove(roomType);
+ }
+
+ public void updateRoomType(int roomNumber, RoomType newRoomType) {
+
+     Database.getRoom(roomNumber).getRoomType().setName(newRoomType.getName());
+     Database.getRoom(roomNumber).getRoomType().setPricePerNight(newRoomType.getPricePerNight());
+ }
 
 }
 

@@ -8,7 +8,7 @@ public class Room {
     public static int roomCount = 0;
 
 
-    public Room(int roomNumber, RoomType roomType, List<Amenity> amenities) {
+    public Room(RoomType roomType, List<Amenity> amenities) {
         setRoomNumber(roomCount);
         setRoomType(roomType);
         setAmenities(amenities);

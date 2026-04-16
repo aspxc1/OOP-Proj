@@ -11,7 +11,6 @@ public class Reservation {
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
     private ReservationStatus reservationStatus;
-    public static int reservationCount = 0;
 
     public Reservation(LocalDate checkInDate, LocalDate checkOutDate, int guestReference, int roomReference, String reservationStatus) {
         this.checkInDate = checkInDate;
@@ -20,7 +19,6 @@ public class Reservation {
         this.roomReference = roomReference;
         this.reservationStatus = ReservationStatus.valueOf(reservationStatus.toUpperCase());
 
-        reservationCount++;
         Database.addReservation(this);
     }
 
@@ -57,7 +55,7 @@ public class Reservation {
         this.guestReference = guestRefrence;
     }
 
-    public int getRoomRefrence() {
+    public int getRoomReference() {
         return this.roomReference;
     }
 

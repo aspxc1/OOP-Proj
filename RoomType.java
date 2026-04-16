@@ -6,6 +6,7 @@ public class RoomType {
     public RoomType(String name, double pricePerNight) {
         setName(name);
         setPricePerNight(pricePerNight);
+        Database.addRoomType(this);
     }
 
     public void setName(String name) {

@@ -10,6 +10,7 @@ public class Database{
     private final static List<Admin> admins = new ArrayList<>();
     private final static List<Receptionist> receptionists = new ArrayList<>();
     private final static List<User> users = new ArrayList<>();
+    private final static List<RoomType> roomTypes = new ArrayList<>();
 
     private static User currentUser;
 
@@ -59,6 +60,19 @@ public class Database{
     }
 
 
+    // Room Type
+    public static void addRoomType(RoomType roomType){
+        roomTypes.add(roomType);
+    }
+    public static RoomType getRoomType(int index){
+        if (index > 0 && index < roomTypes.size())
+            return roomTypes.get(index);
+        else
+            throw new IndexOutOfBoundsException("Room type with such index does not exist");
+    }
+    public static List<RoomType> getRoomTypes(){
+        return roomTypes;
+    }
     // Reservation
     public static void addReservation(Reservation reservation){
         reservations.add(reservation);
