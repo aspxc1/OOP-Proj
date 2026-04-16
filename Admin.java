@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Admin extends Staff{
  public Admin(String username, String password, LocalDate dateOfBirth, int workingHours){
-  super( username, password, Role.ADMIN, dateOfBirth, workingHours);
+  super( username, password, dateOfBirth,Role.ADMIN, workingHours);
  }
 
  public static void login(){
@@ -18,7 +18,7 @@ public class Admin extends Staff{
 
  public Room readRoom(String roomNumber, List<Room> roomDatabase){
   for(Room room : roomDatabase){ 
-     if (room.getRoomNumber().equals(roomNumber)){
+     if (room.getRoomNumber() == roomNumber){
        return room;
    }
   } return null;
@@ -26,7 +26,7 @@ public class Admin extends Staff{
  
  public void updateRoom(Room newRoom, List<Room> roomDatabase){
   for(int i=0; i<roomDatabase.size(); i++){
-   if(roomDatabase.get(i).getRoomNumber().equals(newRoom.getRoomNumber())){
+   if(roomDatabase.get(i).getRoomNumber() == newRoom.getRoomNumber()){
     roomDatabase.set(i, newRoom);
     return;//To exit when reaching the right room to not going through all of it
    }
@@ -34,7 +34,7 @@ public class Admin extends Staff{
  }
  
  public void deleteRoom(String roomNumber, List<Room> roomDatabase){
-  roomDatabase.removeif(room -> room.getRoomNumber().equals(roomNumber));
+  roomDatabase.removeIf(room -> room.getRoomNumber() == roomNumber);
  }
 
  public void createAmenity(Amenity amenity, List<Amenity> amenityDatabase){
@@ -43,7 +43,7 @@ public class Admin extends Staff{
 
  public Amenity readAmenity(String amenityId, List<Amenity> amenityDatabase){
   for(Amenity amenity : amenityDatabase){ 
-     if (amenity.getamenityId().equals(amenityId)){
+     if (amenity.getName().equals(amenityId)){
        return amenity;
    }
   } return null;
@@ -51,7 +51,7 @@ public class Admin extends Staff{
  
  public void updateAmenity(Amenity newAmenity, List<Amenity> amenityDatabase){
   for(int i=0; i<amenityDatabase.size(); i++){
-   if(amenityDatabase.get(i).getAmenityId().equals(newAmenity.getAmenityId())){
+   if(amenityDatabase.get(i).getName().equals(newAmenity.getAmenityId())){
     amenityDatabase.set(i, newAmenity);
     return;//To exit when reaching the right amenityId to not going through all of it
    }
@@ -59,7 +59,7 @@ public class Admin extends Staff{
  }
  
  public void deleteAmenity(String amenityId, List<Amenity> amenityDatabase){
-  amenityDatabase.removeif(amenity -> amenity.getAmenityId().equals(amenityId));
+  amenityDatabase.removeIf(amenity -> amenity.getName().equals(amenityId));
  }
 
  public void createRoomType(RoomType roomType, List<RoomType> roomTypeDatabase){
@@ -68,7 +68,7 @@ public class Admin extends Staff{
 
  public RoomType readRoomType(String roomTypeName, List<RoomType> roomTypeDatabase){
   for(RoomType roomType : roomTypeDatabase){ 
-     if (roomType.getRoomTypeName().equals(roomTypeName)){
+     if (roomType.getName().equals(roomTypeName)){
        return roomType;
    }
   } return null;
@@ -76,7 +76,7 @@ public class Admin extends Staff{
  
  public void updateRoomType(RoomType newRoomType, List<RoomType> roomTypeDatabase){
   for(int i=0; i<roomTypeDatabase.size(); i++){
-   if(roomTypeDatabase.get(i).getRoomTypeName().equals(newRoomType.getRoomTypeName())){
+   if(roomTypeDatabase.get(i).getName().equals(newRoomType.getRoomTypeName())){
     roomTypeDatabase.set(i, newRoomType);
     return;//To exit when reaching the right roomTypeName to not going through all of it
    }
@@ -84,13 +84,14 @@ public class Admin extends Staff{
  }
  
  public void deleteRoomType(String roomTypeName, List<RoomType> roomTypeDatabase){
-  roomTypeDatabase.removeif(roomType -> roomType.getRoomTypeName().equals(roomTypeName));
+  roomTypeDatabase.removeIf(roomType -> roomType.getName().equals(roomTypeName));
  }
 
  public void updateRoomType(int roomNumber, String newType, List<Room> rooms) {
   for (Room r : rooms) {
    if (r.getRoomNumber() == roomNumber) {
-      r.setRoomType(newType); 
+      RoomType updatedType = new RoomType(newType, r.getRoomType().getPricePerNight());
+      r.setRoomType(updatedType);
       return;
       }
    }
@@ -108,8 +109,10 @@ public class Admin extends Staff{
         System.out.print("Number: "); int num = input.nextInt();
         System.out.print("Type: "); String type = input.next();
         System.out.print("Price: "); double price = input.nextDouble();
-          addRoom(new Room(num, type, price), allRooms);
-            break;
+          RoomType roomType = new RoomType(type, price);
+          Room room = new Room(num, roomType, allAmenities);
+          createRoom(room, allRooms);
+          break;
        case 2:
         viewAllRooms(allRooms);
             break;
