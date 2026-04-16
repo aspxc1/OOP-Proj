@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Scanner;
 
 public class Receptionist extends Staff {
 
@@ -12,25 +13,21 @@ public class Receptionist extends Staff {
  }
 
  public void processCheckIn(int targetResId, List<Reservation> allRes) {
-    for (Reservation currentRes : allRes) {
-        if (currentRes.getReservationID() == targetResId) {
-            currentRes.setStatus("ACTIVE");
-            System.out.println("Check-in successful for Reservation ID: " + targetResId);
-            return;
-        }
-    }
-    System.out.println("Error: Could not find Reservation ID " + targetResId);
- }
+   if (targetResId >= 0 && targetResId < allRes.size()) {
+       allRes.get(targetResId).setReservationStatus(Reservation.ReservationStatus.CONFIRMED);
+       System.out.println("Check-in successful for Reservation ID: " + targetResId);
+       return;
+   }
+   System.out.println("Error: Could not find Reservation ID " + targetResId);
+  }
 
  public void processCheckOut(int targetResId, List<Reservation> allRes) {
-    for (Reservation currentRes : allRes) {
-        if (currentRes.getReservationID() == targetResId) {
-            currentRes.setStatus("COMPLETED");
-            System.out.println("Check-out successful for Reservation ID: " + targetResId);
-            return;
-        }
-    }
-    System.out.println("Error: Could not find Reservation ID " + targetResId);
+   if (targetResId >= 0 && targetResId < allRes.size()) {
+       allRes.get(targetResId).setReservationStatus(Reservation.ReservationStatus.COMPLETED);
+       System.out.println("Check-out successful for Reservation ID: " + targetResId);
+       return;
+   }
+   System.out.println("Error: Could not find Reservation ID " + targetResId);
  }
 
  public void displayMenu(List<Reservation> allRes) {
