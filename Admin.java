@@ -16,7 +16,7 @@ public class Admin extends Staff{
   roomDatabase.add(room);
  }
 
- public Room readRoom(String roomNumber, List<Room> roomDatabase){
+ public Room readRoom(int roomNumber, List<Room> roomDatabase){
   for(Room room : roomDatabase){ 
      if (room.getRoomNumber() == roomNumber){
        return room;
@@ -33,7 +33,7 @@ public class Admin extends Staff{
   }
  }
  
- public void deleteRoom(String roomNumber, List<Room> roomDatabase){
+ public void deleteRoom(int roomNumber, List<Room> roomDatabase){
   roomDatabase.removeIf(room -> room.getRoomNumber() == roomNumber);
  }
 
