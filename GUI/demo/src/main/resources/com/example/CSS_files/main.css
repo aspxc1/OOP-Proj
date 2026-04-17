@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'Manrope';
+    src: url('../Manrope/static/Manrope-Regular.ttf');
+}
+
+.root {
+    /* Custom variables are fine, but usually start with -fx- for consistency */
+    -my-primary-color: #1A5F7A;
+    -my-secondary-color: #576067;
+    -tertiary: #7B4F16;
+    -neutral: #F8FAFC;
+    -fx-font-family: "Manrope";
+
+}
+
+
