@@ -1,10 +1,9 @@
 import java.time.LocalDate;
-import java.util.*;
 
 public class Receptionist extends Staff {
 
-    public Receptionist(String name, String password, LocalDate birthDate, int weeklyHours) {
-        super(name, password, birthDate, Role.RECEPTIONIST, weeklyHours);
+    public Receptionist(String name, String password, LocalDate birthDate, int workingHours) {
+        super(name, password, birthDate, Role.RECEPTIONIST, workingHours);
     }
 
     public static void login() {

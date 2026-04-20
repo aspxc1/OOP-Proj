@@ -1,8 +1,25 @@
+import java.time.LocalDate;
 import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
+
+        Admin admin1 = new Admin("Omar", "1234", LocalDate.ofYearDay(2006, 99), 8);
+        Receptionist receptionist1 = new Receptionist("Yousef", "1234", LocalDate.ofYearDay(2006, 94), 8);
+        RoomType roomtype1 = new RoomType("Single",20);
+        RoomType roomtype2 = new RoomType("Double",22);
+        RoomType roomtype3 = new RoomType("Suite",25);
+        roomPreferences roompref = new roomPreferences(roomtype1,1);
+        Guest guest1 = new Guest("Ahmed", "1234", LocalDate.ofYearDay(2008,56), 150, "testaddress", Guest.Genders.male, roompref);
+        Amenity amenity1 = new Amenity("Wifi");
+        Amenity amenity2 = new Amenity("TV");
+        Amenity amenity3 = new Amenity("Minibar");
+        Amenity amenity4 = new Amenity("AC");
+        Amenity amenity5 = new Amenity("Bathtub");
+        Room room1 = new Room(roomtype1, List.of(amenity1, amenity2, amenity5));
+        Room room2 = new Room(roomtype2, List.of(amenity1, amenity2, amenity4, amenity5));
+        Room room3 = new Room(roomtype3, List.of(amenity1, amenity2, amenity3, amenity4, amenity5));
 
         Scanner scan = new Scanner(System.in);
 

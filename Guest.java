@@ -49,7 +49,7 @@ public class Guest extends User{
 
     public void setIndex(int index) { this.index = index; }
 
-    Guest(String username, String password, LocalDate dateOfBirth, double balance, String address, Genders gender, roomPreferences roomPreference, int index){
+    Guest(String username, String password, LocalDate dateOfBirth, double balance, String address, Genders gender, roomPreferences roomPreference){
         setUsername(username);
         setPassword(password);
         setDateOfBirth(dateOfBirth);
@@ -57,7 +57,6 @@ public class Guest extends User{
         this.address = address;
         this.gender = gender;
         this.roomPreference = roomPreference;
-        this.index = index;
         guestcount++;
 
         Database.addGuest(this);
@@ -170,7 +169,7 @@ public class Guest extends User{
             }
         }
         gender = Genders.valueOf(genderupper);
-        Guest guest = new Guest(name,password,dateOfBirth,balance,address,gender,roompreferences,guestcount);
+        Guest guest = new Guest(name,password,dateOfBirth,balance,address,gender,roompreferences);
 
         Database.setCurrentUser(guest);
 
