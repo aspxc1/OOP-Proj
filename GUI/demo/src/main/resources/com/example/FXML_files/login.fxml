@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <AnchorPane prefHeight="662.0" prefWidth="928.0" styleClass="container" stylesheets="@../CSS_files/login.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -18,12 +19,13 @@
          <children>
             <VBox prefHeight="613.0" prefWidth="413.0" styleClass="firstbox" HBox.hgrow="ALWAYS">
                <children>
-                  <HBox prefHeight="35.0" prefWidth="339.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="339.0" spacing="10.0">
+                     <VBox.margin>
+                        <Insets bottom="30.0" />
+                     </VBox.margin>
                      <children>
-                         <Label styleClass="hotelname" text="Larpers Hotel" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets bottom="30.0" />
-                           </HBox.margin></Label>
+                         <FontIcon iconColor="WHITE" iconLiteral="fas-hotel" iconSize="20" />
+                         <Label styleClass="hotelname" text="Larpers Hotel" textFill="WHITE" />
                      </children>
                   </HBox>
                   <Label maxWidth="1.7976931348623157E308" prefHeight="101.0" prefWidth="298.0" styleClass="elevated" text="Elavated Hospitality Management" textFill="WHITE" wrapText="true">
@@ -47,7 +49,7 @@
                         <VBox alignment="CENTER" prefHeight="85.0" prefWidth="216.0">
                            <children>
                               <Label prefHeight="18.0" prefWidth="216.0" styleClass="text1" text="&quot; Best hotel of all time&quot;" />
-                              <Label prefHeight="17.0" prefWidth="216.0" styleClass="text2" text="Ahmed Ramy" />
+                              <Label prefHeight="17.0" prefWidth="216.0" styleClass="text2" text="Ahmed Ramy, Estate Manager" />
                            </children></VBox>
                      </children>
                   </HBox>
@@ -68,12 +70,12 @@
                               <Insets />
                            </HBox.margin>
                            <padding>
-                              <Insets left="20.0" right="20.0" />
+                              <Insets bottom="6.0" left="20.0" right="20.0" top="6.0" />
                            </padding>
                         </Button>
                         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" styleClass="btn2" text="Staff Portal">
                            <padding>
-                              <Insets left="30.0" right="30.0" />
+                              <Insets bottom="6.0" left="30.0" right="30.0" top="6.0" />
                            </padding>
                         </Button>
                      </children>
@@ -103,21 +105,30 @@
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField>
+                        <HBox alignment="CENTER_LEFT" styleClass="input-container">
                            <VBox.margin>
                               <Insets bottom="25.0" />
                            </VBox.margin>
-                        </TextField>
+                           <children>
+                              <FontIcon iconColor="#555555" iconLiteral="fas-envelope" iconSize="16" text="" />
+                              <TextField promptText="concierge@hotel.com" styleClass="transparent-input" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
                         <Label maxWidth="1.7976931348623157E308" styleClass="text5" text="SECURITY KEY">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField>
+                        <HBox alignment="CENTER_LEFT" styleClass="input-container">
                            <VBox.margin>
                               <Insets bottom="50.0" />
                            </VBox.margin>
-                        </TextField>
+                           <children>
+                              <FontIcon iconColor="#555555" iconLiteral="fas-lock" iconSize="16" />
+                              <TextField promptText="........" styleClass="transparent-input" HBox.hgrow="ALWAYS" />
+                              <FontIcon iconColor="#555555" iconLiteral="fas-eye" iconSize="16" />
+                           </children>
+                        </HBox>
                         <Button alignment="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="285.0" styleClass="btn3" text="Authenticate Session">
                            <VBox.margin>
                               <Insets />
@@ -128,7 +139,7 @@
                               <Insets bottom="40.0" top="30.0" />
                            </VBox.margin>
                         </Button>
-                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="264.0" text="Encrypted Administrative interface" styleClass="text6" textAlignment="CENTER" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="264.0" styleClass="text6" text="Encrypted Administrative interface" textAlignment="CENTER" />
                      </children>
                   </VBox>
                </children>
@@ -136,7 +147,7 @@
                   <Insets />
                </HBox.margin>
                <padding>
-                  <Insets bottom="15.0" left="10.0" top="15.0" />
+                  <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
                </padding>
             </VBox>
          </children>

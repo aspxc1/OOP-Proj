@@ -56,14 +56,14 @@
 }
 
 .hbox .firstbox HBox  Label.text1{
--fx-font-size:18;
+-fx-font-size:14;
 -fx-text-fill:white;
 -fx-font-weight:bold;
 
 }
 
 .hbox .firstbox HBox Label.text2{
--fx-font-size:10;
+-fx-font-size:8;
 -fx-text-fill:-neutral;
 }
 
@@ -98,20 +98,27 @@
 
 .hbox .secondbox HBox Button.btn1{
 -fx-border-color: transparent; /* Your border color */
-  -fx-border-width: 1 0 1 1;
-  -fx-border-radius: 10 0 10 10;
-  -fx-background-radius: 10 0 10 10;
+  -fx-border-width: 1;
+  -fx-border-radius: 10;
+  -fx-background-radius: 10;
   -fx-background-color:white;
 }
 
+.hbox .secondbox HBox Button.btn1:hover{
+  -fx-cursor:hand;
+}
+
 .hbox .secondbox HBox Button.btn2{
-  -fx-border-width: 1 1 1 0;
-  -fx-border-radius: 10 10 10 0;
-  -fx-background-radius: 10 10 10 0;
+  -fx-border-width: 1;
+  -fx-border-radius: 10;
+  -fx-background-radius: 10;
    -fx-background-color: -neutral;
 
 }
 
+.hbox .secondbox HBox Button.btn2:hover{
+  -fx-cursor:hand;
+}
 
 .hbox .secondbox .text3{
   -fx-text-fill:black;
@@ -129,31 +136,39 @@
   -fx-font-weight:bold;
 }
 
-.hbox .secondbox TextField{
-  -fx-background-color: rgb(245, 245, 245);
-    -fx-border-width: 0;
-    -fx-border-color: transparent;
+.input-container {
+    -fx-background-color: rgb(245, 245, 245);
     -fx-border-color: transparent transparent #1A5F7A transparent; /* Bottom border only */
     -fx-border-width: 0 0 1.5 0; /* Thickness of the bottom line */
-    
-    /* 2. Typography (using your Manrope font) */
+    -fx-padding: 5 10 5 15; /* Top, Right, Bottom, Left padding around icon and text field */
+}
+
+/* When the text field inside is focused, highlight the HBox bottom border */
+.input-container:focus-within {
+    -fx-border-color: transparent transparent #7B4F16 transparent;
+}
+
+.hbox .secondbox .input-container TextField {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+
+    /* Typography */
     -fx-font-family: "Manrope";
     -fx-font-size: 14px;
-    -fx-text-fill: #576067; /* Your secondary color */
+    -fx-text-fill: #576067;
     
-    /* 3. Padding to align text with the icon */
+    /* Padding */
     -fx-padding: 5 0 8 10;
     
-    /* 4. Placeholder text color */
+    /* Placeholder text color */
     -fx-prompt-text-fill: #A0AEC0;
-    
 }
 
-.text-field:focused {
-    -fx-border-color: transparent transparent #7B4F16 transparent; /* Your tertiary gold color */
-    -fx-background-color: transparent; /* Keep it transparent when typing */
+.hbox .secondbox .input-container TextField:focused {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
 }
-
 
 .hbox .secondbox VBox Button.btn3{
   /* Background Color & Large Radius */

@@ -1,16 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.SecondaryController">
-    <children>
-        <Label text="Secondary View" />
-        <Button fx:id="secondaryButton" text="Switch to Primary View" onAction="#switchToPrimary" />
-    </children>
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-</VBox>
+<AnchorPane prefHeight="662.0" prefWidth="928.0" styleClass="container" stylesheets="@../CSS_files/register.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox layoutX="4.8" layoutY="-0.8" prefHeight="662.0" prefWidth="919.0" styleClass="hbox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox prefHeight="613.0" prefWidth="413.0" styleClass="firstbox" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="339.0" spacing="10.0">
+                  
+                     <children>
+                     <FontIcon iconColor="WHITE" iconLiteral="fas-hotel" iconSize="20" />
+                         <Label styleClass="hotelname" text="Larpers Hotel" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin></Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="30.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Label maxWidth="1.7976931348623157E308" prefHeight="101.0" prefWidth="298.0" styleClass="elevated" text="Elavated Hospitality Management" textFill="WHITE" wrapText="true">
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding></Label>
+                  <Label maxWidth="1.7976931348623157E308" prefHeight="54.0" prefWidth="298.0" styleClass="experience" text="Experience the digital atrium where efficeny meets luxury design for modern hoteliers and special guests " wrapText="true" />
+                  <Region prefHeight="168.0" prefWidth="298.0" />
+                  
+                  <HBox alignment="CENTER" prefHeight="99.0" prefWidth="298.0" styleClass="secondchild-hbox">
+                     <children>
+                        <Pane prefHeight="104.0" prefWidth="70.0">
+                           <children>
+                              <ImageView fitHeight="68.0" fitWidth="56.0" layoutX="7.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/download.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <VBox alignment="CENTER" prefHeight="85.0" prefWidth="216.0">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="216.0" styleClass="text1" text="&quot; Best hotel of all time&quot;" />
+                              <Label prefHeight="17.0" prefWidth="216.0" styleClass="text2" text="Ahmed Ramy, Estate Manager" />
+                           </children></VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="30.0" left="20.0" right="20.0" top="30.0" />
+               </padding>
+            </VBox>
+           <VBox prefHeight="643.0" prefWidth="542.0" styleClass="secondbox" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox>
+                     <children>
+                        <Label prefHeight="36.0" prefWidth="370.0" styleClass="text3" text="Guest Registration" />   
+                        <Label prefHeight="0.0" prefWidth="262.0" styleClass="text4" text="Create your account to start your journey" wrapText="true" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="262.0" prefWidth="458.0">
+                     <children>
+                        <Label maxWidth="1.7976931348623157E308" minWidth="0.0" styleClass="text5" text="Full Name">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" styleClass="input-container">
+                           <VBox.margin>
+                              <Insets bottom="25.0" />
+                           </VBox.margin>
+                           <children>
+                              <FontIcon iconColor="#555555" iconLiteral="fas-user" iconSize="16" />
+                              <TextField promptText="John Doe" styleClass="transparent-input" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <Label maxWidth="1.7976931348623157E308" styleClass="text5" text="Email Address">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" styleClass="input-container">
+                           <VBox.margin>
+                              <Insets bottom="25.0" />
+                           </VBox.margin>
+                           <children>
+                              <FontIcon iconColor="#555555" iconLiteral="fas-envelope" iconSize="16" />
+                              <TextField promptText="john@example.com" styleClass="transparent-input" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <Label maxWidth="1.7976931348623157E308" minWidth="0.0" styleClass="text5" text="Phone Number">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" styleClass="input-container">
+                           <VBox.margin>
+                              <Insets bottom="25.0" />
+                           </VBox.margin>
+                           <children>
+                              <FontIcon iconColor="#555555" iconLiteral="fas-phone-alt" iconSize="16" />
+                              <TextField promptText="+1 (555) 000-0000" styleClass="transparent-input" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+
+
+                        <Label maxWidth="1.7976931348623157E308" minWidth="0.0" styleClass="text5" text="Password">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" styleClass="input-container">
+                           <VBox.margin>
+                              <Insets bottom="25.0" />
+                           </VBox.margin>
+                           <children>
+                              <FontIcon iconColor="#555555" iconLiteral="fas-lock" iconSize="16" />
+                              <TextField promptText="........" styleClass="transparent-input" HBox.hgrow="ALWAYS" />
+                              <FontIcon iconColor="#555555" iconLiteral="fas-eye" iconSize="16" />
+                           </children>
+                        </HBox>
+
+
+
+
+
+
+                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="285.0" styleClass="btn3" text="Create Account">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="264.0" styleClass="text6" text="Alredy have an account? Login" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="60.0" left="60.0" right="60.0" top="60.0" />
+   </padding>
+</AnchorPane>

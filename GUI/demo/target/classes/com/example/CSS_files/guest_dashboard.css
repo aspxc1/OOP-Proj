@@ -1,0 +1,355 @@
+/* guest_dashboard.css */
+@import url("main.css");
+
+.root {
+  -fx-font-family: "Manrope", sans-serif;
+  -fx-background-color: #f7f9fa;
+}
+
+/* SIDEBAR */
+.sidebar {
+  -fx-background-color: #ffffff;
+  -fx-padding: 30 20;
+  -fx-border-color: #eaedf1;
+  -fx-border-width: 0 1 0 0;
+}
+
+.logo-text {
+  -fx-font-size: 18px;
+  -fx-font-weight: 800;
+  -fx-text-fill: #113448;
+}
+
+.sub-logo-text {
+  -fx-font-size: 12px;
+  -fx-text-fill: #8b9fac;
+  -fx-padding: 0 0 0 5;
+}
+
+.sidebar-btn {
+  -fx-background-color: transparent;
+  -fx-font-size: 14px;
+  -fx-font-weight: 500;
+  -fx-text-fill: #5b7384;
+  -fx-alignment: CENTER_LEFT;
+  -fx-padding: 12 15;
+  -fx-pref-width: 210;
+  -fx-cursor: hand;
+}
+
+.sidebar-btn:hover {
+  -fx-background-color: #f0f4f8;
+  -fx-background-radius: 8;
+}
+
+.active-btn {
+  -fx-text-fill: #1377a5;
+  -fx-font-weight: 700;
+  -fx-background-color: #f0f8fb;
+  -fx-background-radius: 8;
+  -fx-border-color: #1377a5;
+  -fx-border-width: 0 4 0 0;
+  -fx-border-radius: 8;
+}
+
+.logout-btn {
+  -fx-background-color: transparent;
+  -fx-text-fill: #5b7384;
+  -fx-font-size: 14px;
+  -fx-padding: 0;
+}
+.logout-btn-container {
+    
+    -fx-padding: 12 15;
+  -fx-pref-width: 210;
+  -fx-cursor: hand;
+}
+
+.logout-btn-container:hover {
+  -fx-background-color: #f0f4f8;
+  -fx-background-radius: 8;
+  
+}
+
+/* MAIN CONTENT */
+.main-content {
+  -fx-background-color: #f8fafc;
+}
+
+.top-navbar {
+  -fx-background-color: #ffffff;
+  -fx-padding: 15 30;
+  -fx-border-color: #eaedf1;
+  -fx-border-width: 0 0 1 0;
+}
+
+.navbar-title {
+  -fx-font-weight: 800;
+  -fx-font-size: 13px;
+  -fx-text-fill: #5b7384;
+  -fx-letter-spacing: 1px;
+}
+
+.search-bar {
+  -fx-background-color: #f0f4f8;
+  -fx-background-radius: 20;
+  -fx-padding: 8 15;
+  -fx-pref-width: 250;
+  -fx-border-width: 0;
+}
+
+.profile-pic-small {
+  -fx-pref-width: 35;
+  -fx-pref-height: 35;
+  -fx-background-color: #1377a5;
+  -fx-background-radius: 50%;
+  -fx-cursor:hand;
+}
+
+
+
+.content-scroll {
+  -fx-background-color: transparent;
+  -fx-fit-to-width: true;
+}
+
+.content-scroll .viewport {
+  -fx-background-color: transparent;
+}
+
+.scroll-content {
+  -fx-padding: 30;
+}
+
+.section-tag {
+  -fx-font-size: 11px;
+  -fx-font-weight: 800;
+  -fx-text-fill: #1377a5;
+  -fx-letter-spacing: 1px;
+}
+
+.welcome-text {
+  -fx-font-size: 28px;
+  -fx-font-weight: 700;
+  -fx-text-fill: #1c2a38;
+}
+
+.primary-btn {
+  -fx-background-color: #113448;
+  -fx-text-fill: white;
+  -fx-font-weight: 600;
+  -fx-padding: 10 20;
+  -fx-background-radius: 6;
+  -fx-cursor: hand;
+}
+
+.secondary-btn {
+  -fx-background-color: #eaedf1;
+  -fx-text-fill: #5b7384;
+  -fx-font-weight: 600;
+  -fx-padding: 10 20;
+  -fx-background-radius: 6;
+  -fx-cursor: hand;
+}
+
+/* CARDS */
+.profile-card {
+  -fx-background-color: white;
+  -fx-background-radius: 12;
+  -fx-padding: 0;
+  -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.03), 10, 0, 0, 5);
+}
+
+.profile-card-image {
+  -fx-background-color: #d1d5db;
+  -fx-background-radius: 12 0 0 12;
+}
+
+.badge-gold {
+  -fx-background-color: #a87e36;
+  -fx-text-fill: white;
+  -fx-font-size: 10px;
+  -fx-font-weight: 800;
+  -fx-padding: 4 8;
+  -fx-background-radius: 10;
+}
+
+.points-text {
+  -fx-font-size: 22px;
+  -fx-font-weight: 800;
+  -fx-text-fill: #1377a5;
+}
+
+.name-text {
+  -fx-font-size: 20px;
+  -fx-font-weight: 700;
+  -fx-text-fill: #1c2a38;
+}
+
+.muted-text {
+  -fx-font-size: 13px;
+  -fx-text-fill: #8b9fac;
+}
+
+.muted-text-small {
+  -fx-font-size: 11px;
+  -fx-text-fill: #8b9fac;
+  -fx-font-weight: 600;
+}
+
+.info-text {
+  -fx-font-size: 13px;
+  -fx-font-weight: 600;
+  -fx-text-fill: #1c2a38;
+}
+
+.balance-card {
+  -fx-background-color: #113448;
+  -fx-background-radius: 12;
+  -fx-padding: 25;
+  -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.05), 15, 0, 0, 5);
+}
+
+.statement-id {
+  -fx-text-fill: rgba(255, 255, 255, 0.7);
+  -fx-font-size: 10px;
+  -fx-background-color: rgba(255, 255, 255, 0.1);
+  -fx-padding: 3 8;
+  -fx-background-radius: 10;
+}
+
+.balance-label {
+  -fx-text-fill: rgba(255, 255, 255, 0.8);
+  -fx-font-size: 13px;
+}
+
+.balance-amount {
+  -fx-text-fill: white;
+  -fx-font-size: 32px;
+  -fx-font-weight: 800;
+}
+
+.balance-btn {
+  -fx-background-color: white;
+  -fx-text-fill: #113448;
+  -fx-font-weight: 700;
+  -fx-padding: 10;
+  -fx-background-radius: 6;
+  -fx-cursor: hand;
+  -fx-pref-width: 250;
+}
+
+/* RESERVATIONS */
+.reservations-section {
+  -fx-background-color: #f8fafc;
+  -fx-padding: 10 0 0 0;
+}
+
+.section-title {
+  -fx-font-size: 16px;
+  -fx-font-weight: 700;
+  -fx-text-fill: #1c2a38;
+}
+
+.reservation-item {
+  -fx-background-color: white;
+  -fx-padding: 15;
+  -fx-background-radius: 10;
+  -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.02), 5, 0, 0, 2);
+}
+
+.res-image-1 {
+  -fx-pref-width: 60;
+  -fx-pref-height: 60;
+  -fx-background-color: #dbe4eb;
+  -fx-background-radius: 6;
+}
+
+.res-image-2 {
+  -fx-pref-width: 60;
+  -fx-pref-height: 60;
+  -fx-background-color: #79cadf;
+  -fx-background-radius: 6;
+}
+
+.res-title {
+  -fx-font-size: 15px;
+  -fx-font-weight: 700;
+  -fx-text-fill: #1377a5;
+}
+
+.res-badge {
+  -fx-background-color: #eaedf1;
+  -fx-text-fill: #5b7384;
+  -fx-font-size: 10px;
+  -fx-font-weight: 700;
+  -fx-padding: 2 6;
+  -fx-background-radius: 4;
+}
+
+.status-active {
+  -fx-text-fill: #1377a5;
+  -fx-font-weight: 700;
+  -fx-font-size: 13px;
+}
+
+.status-pending {
+  -fx-text-fill: #8b9fac;
+  -fx-font-weight: 700;
+  -fx-font-size: 13px;
+}
+
+.res-amount {
+  -fx-font-size: 16px;
+  -fx-font-weight: 800;
+  -fx-text-fill: #1c2a38;
+}
+
+.book-more-btn {
+  -fx-background-color: transparent;
+  -fx-border-color: #d1d9e0;
+  -fx-border-style: dashed;
+  -fx-border-width: 2;
+  -fx-border-radius: 8;
+  -fx-padding: 15;
+  -fx-text-fill: #5b7384;
+  -fx-font-weight: 600;
+  -fx-cursor: hand;
+}
+
+/* QUICK ACTIONS */
+.quick-action-card {
+  -fx-background-color: #eaedf1;
+  -fx-padding: 15 20;
+  -fx-background-radius: 10;
+}
+
+.icon-spa,
+.icon-dining,
+.icon-transfer {
+  -fx-pref-width: 30;
+  -fx-pref-height: 30;
+  -fx-background-color: #ffffff;
+  -fx-background-radius: 15;
+}
+
+.qa-title {
+  -fx-font-size: 11px;
+  -fx-font-weight: 800;
+  -fx-text-fill: #1c2a38;
+  -fx-letter-spacing: 0.5px;
+}
+
+.qa-subtitle {
+  -fx-font-size: 12px;
+  -fx-text-fill: #5b7384;
+  -fx-font-weight: 600;
+}
+
+/* Base Icon Placeholders */
+.icon-btn {
+  -fx-background-color: transparent;
+  -fx-pref-width: 30;
+  -fx-pref-height: 30;
+  -fx-cursor: hand;
+}
