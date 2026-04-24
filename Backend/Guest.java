@@ -51,7 +51,7 @@ public class Guest extends User{
 
     public void setIndex(int index) { this.index = index; }
 
-    Guest(String username, String password, LocalDate dateOfBirth, double balance, String address, Genders gender, roomPreferences roomPreference, int index){
+    Guest(String username, String password, LocalDate dateOfBirth, double balance, String address, Genders gender, roomPreferences roomPreference){
         setUsername(username);
         setPassword(password);
         setDateOfBirth(dateOfBirth);
@@ -112,6 +112,7 @@ public class Guest extends User{
             System.out.println("Your balance must be positive, please try again: "); // check for valid balance
             balance = scan.nextDouble();
         }
+        scan.nextLine();
 
         System.out.print("Please enter your address: ");
         String address = scan.nextLine();
@@ -162,7 +163,6 @@ public class Guest extends User{
         while (true){
             genderstr = scan.next();
             genderlower = genderstr.toLowerCase();
-            genderupper = genderstr.toUpperCase();
 
             if (!genderlower.equals("male") && !genderlower.equals("female")){
                 System.out.print("Invalid gender, please try again: ");
@@ -171,8 +171,8 @@ public class Guest extends User{
                 break;
             }
         }
-        gender = Genders.valueOf(genderupper);
-        Guest guest = new Guest(name,password,dateOfBirth,balance,address,gender,roompreferences,guestcount);
+        gender = Genders.valueOf(genderlower);
+        Guest guest = new Guest(name,password,dateOfBirth,balance,address,gender,roompreferences);
 
         Database.setCurrentUser(guest);
 
@@ -220,15 +220,42 @@ public class Guest extends User{
 
         for (int i = 0; i < Room.roomCount; i++) {
             boolean available = Database.getRoom(i).isAvailable();
-            boolean prefmatch = Database.getRoom(i).getRoomType().getName().equals(this.roomPreference.getRoomType().getName());
+            boolean prefmatch = (Database.getRoom(i).getRoomType().getName().equals(this.roomPreference.getRoomType().getName()) && Database.getRoom(i).getFloor() == this.roomPreference.getFloor() && Database.getRoom(i).getRoomType().getPricePerNight() == this.roomPreference.getRoomType().getPricePerNight());
 
             if (prefmatch && available) {
                 roomReference = Database.getRoom(i).getRoomNumber();
                 found = true;
-                System.out.println("The following room has been reserved: " );
+                System.out.println("The following room has been reserved based on your preferred type and price: " );
                 Database.getRoom(i).displayRoomDetails();
             }
 
+        }
+
+        if (!found) {
+            for (int i = 0; i < Room.roomCount; i++) {
+                boolean available = Database.getRoom(i).isAvailable();
+                boolean prefmatch = (Database.getRoom(i).getRoomType().getName().equals(this.roomPreference.getRoomType().getName()) && Database.getRoom(i).getFloor() == this.roomPreference.getFloor());
+
+                if (prefmatch && available) {
+                    roomReference = Database.getRoom(i).getRoomNumber();
+                    found = true;
+                    System.out.println("The following room has been reserved based on your preferred type, although preferred price was not available: ");
+                    Database.getRoom(i).displayRoomDetails();
+                }
+            }
+        }
+        if (!found) {
+            for (int i = 0; i < Room.roomCount; i++) {
+                boolean available = Database.getRoom(i).isAvailable();
+                boolean prefmatch = (Database.getRoom(i).getRoomType().getName().equals(this.roomPreference.getRoomType().getName()));
+
+                if (prefmatch && available) {
+                    roomReference = Database.getRoom(i).getRoomNumber();
+                    found = true;
+                    System.out.println("The following room has been reserved based on your preferred type, although preferred price and floor were not available: ");
+                    Database.getRoom(i).displayRoomDetails();
+                }
+            }
         }
         if (!found) {
             for (int i = 0; i < Room.roomCount; i++) {
@@ -257,7 +284,7 @@ public class Guest extends User{
         boolean found = false;
         for (int i = 0; i < Database.getReservations().size(); i++) {
 
-            if (Database.getReservation(i).getGuestReference() == this.index && (Database.getReservation(i).getReservationStatus() != Reservation.ReservationStatus.CANCELLED)) {
+            if (Database.getReservation(i).getGuestReference() == this.index && ((Database.getReservation(i).getReservationStatus() != Reservation.ReservationStatus.CANCELLED))) {
                 found = true;
                 System.out.println("Checkin Date: " + Database.getReservation(i).getCheckInDate());
                 System.out.println("Checkout Date: " + Database.getReservation(i).getCheckOutDate());
@@ -283,7 +310,7 @@ public class Guest extends User{
         }
 
         if (!found) {
-            throw new IllegalArgumentException("You do not have any such reservation booked.");
+            throw new InvalidReservationException("You do not have any such reservation booked.");
         }
         Reservation reservation = Database.getReservation(reservationindex);
         if (reservation.getReservationStatus() == Reservation.ReservationStatus.CANCELLED)
@@ -291,6 +318,8 @@ public class Guest extends User{
 
         if (reservation.getGuestReference() == this.index) {
             reservation.setReservationStatus(Reservation.ReservationStatus.CANCELLED);
+            Database.getRoom(roomnumber).setAvailable(true);
+            System.out.println("Reservation cancelled.");
         }
         else
             System.out.println("There is no such reservation under you.");
@@ -302,17 +331,19 @@ public class Guest extends User{
         int reservationindex = 0;
         boolean found = false;
         for (int i = 0; i < Database.getReservations().size(); i++) {
-            if (Database.getReservation(i).getRoomReference() == roomnumber) {
+            if (Database.getReservation(i).getRoomReference() == roomnumber && Database.getReservation(i).getReservationStatus() == Reservation.ReservationStatus.CONFIRMED) {
                 found = true;
                 reservationindex = i;
                 if (Database.getReservation(i).getGuestReference() != this.index) {
-                    throw new InvalidPaymentException("You do not any have such reservation booked.");
+                    throw new InvalidReservationException("You do not have any such reservation booked.");
+
                 }
                 break;
             }
         }
         if (!found)
-            throw new IllegalArgumentException("You do not have any such reservation booked.");
+            throw new InvalidReservationException("You do not have any such reservation booked.");
+
         Payable bill = Database.getReservation(reservationindex).getInvoice();
 
         long daysBetween = ChronoUnit.DAYS.between(Database.getReservation(reservationindex).getCheckInDate(), Database.getReservation(reservationindex).getCheckOutDate());

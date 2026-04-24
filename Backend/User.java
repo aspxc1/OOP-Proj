@@ -1,5 +1,3 @@
-package Backend;
-
 import java.time.LocalDate;
 import java.util.*;
 
@@ -37,30 +35,31 @@ public abstract class User{
     }
 
 
-    public static void login(List<? extends User> users){
+    public static void login(List<? extends User> users) {
 
         Scanner scan = new Scanner(System.in);
-
-        System.out.print("Please enter your username");
-        String username = scan.next();
-
-
-        System.out.print("Please enter your password");
-        String password = scan.next();
-
         boolean found = false;
+        while (!found) {
 
-        for (User user : users) {
+            System.out.print("Please enter your username: ");
+            String username = scan.next();
 
-            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-                found = true;
-                Database.setCurrentUser(user);
-                return;
+
+            System.out.print("Please enter your password: ");
+            String password = scan.next();
+
+
+            for (User user : users) {
+
+                if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                    found = true;
+                    Database.setCurrentUser(user);
+                    return;
+                }
             }
+            if (!found)
+                System.out.println("Invalid login, please try again");
         }
-        if ( !found )
-            System.out.println("Invalid login, please try again");
     }
 
 }
-

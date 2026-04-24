@@ -29,9 +29,9 @@ public class Admin extends Staff{
      M.read();
  }
 
- public void createRoom(RoomType roomType, List<Amenity> amenities){
+ public void createRoom(RoomType roomType, List<Amenity> amenities,int floor){
 
-     Room room = new Room(roomType, amenities);
+     Room room = new Room(roomType, amenities, floor);
      Database.getRooms().add(room);
  }
 
