@@ -5,15 +5,27 @@ public class Room implements Manageable {
     private RoomType roomType;
     private List<Amenity> amenities;
     private boolean isAvailable;
+    private int floor;
     public static int roomCount = 0;
 
 
-    public Room(RoomType roomType, List<Amenity> amenities) {
+    public Room(RoomType roomType, List<Amenity> amenities,int floor) {
         setRoomNumber(roomCount);
         setRoomType(roomType);
         setAmenities(amenities);
         this.isAvailable = true;
+        this.floor = floor;
         roomCount++;
+
+        Database.addRoom(this);
+    }
+
+    public int getFloor() {
+        return floor;
+    }
+
+    public void setFloor(int floor) {
+        this.floor = floor;
     }
 
     private void setRoomNumber(int roomNumber) {

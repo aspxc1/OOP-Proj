@@ -36,7 +36,7 @@ public class Database{
         users.add(g);
     }
     public static Guest getGuest(int index){
-        if (index > 0 && index < guests.size())
+        if (index >= 0 && index < guests.size())
             return guests.get(index);
         else
             throw new IndexOutOfBoundsException("Guest with such index does not exist");
@@ -51,7 +51,7 @@ public class Database{
         rooms.add(room);
     }
     public static Room getRoom(int index){
-        if (index > 0 && index < rooms.size())
+        if (index >= 0 && index < rooms.size())
             return rooms.get(index);
         else
             throw new IndexOutOfBoundsException("Room with such index does not exist");
@@ -66,7 +66,7 @@ public class Database{
         roomTypes.add(roomType);
     }
     public static RoomType getRoomType(int index){
-        if (index > 0 && index < roomTypes.size())
+        if (index >= 0 && index < roomTypes.size())
             return roomTypes.get(index);
         else
             throw new IndexOutOfBoundsException("Room type with such index does not exist");
@@ -79,7 +79,7 @@ public class Database{
         reservations.add(reservation);
     }
     public static Reservation getReservation(int index){
-        if (index > 0 && index < reservations.size())
+        if (index >= 0 && index < reservations.size())
             return reservations.get(index);
         else
             throw new IndexOutOfBoundsException("Reservation with such index does not exist");
@@ -94,7 +94,7 @@ public class Database{
         invoices.add(invoice);
     }
     public static Invoice getInvoice(int index){
-        if (index > 0 && index < invoices.size())
+        if (index >= 0 && index < invoices.size())
             return invoices.get(index);
         else
             throw new IndexOutOfBoundsException("Invoice with such index does not exist");
@@ -111,7 +111,7 @@ public class Database{
         users.add(admin);
     }
     public static Admin getAdmin(int index){
-        if (index > 0 && index < admins.size())
+        if (index >= 0 && index < admins.size())
             return admins.get(index);
         else
             throw new IndexOutOfBoundsException("Admin with such index does not exist");
@@ -128,7 +128,7 @@ public class Database{
         users.add(receptionist);
     }
     public static Receptionist getReceptionist(int index){
-        if (index > 0 && index < receptionists.size())
+        if (index >= 0 && index < receptionists.size())
             return receptionists.get(index);
         else
             throw new IndexOutOfBoundsException("Receptionist with such index does not exist");
@@ -143,7 +143,7 @@ public class Database{
         amenities.add(amenity);
     }
     public static Amenity getAmenity(int index){
-        if (index > 0 && index < amenities.size())
+        if (index >= 0 && index < amenities.size())
             return amenities.get(index);
         else
             throw new IndexOutOfBoundsException("Amenity with such index does not exist");

@@ -35,18 +35,19 @@ public abstract class User{
     }
 
 
-    public static void login(List<? extends User> users){
+    public static void login(List<? extends User> users) {
 
         Scanner scan = new Scanner(System.in);
-
-        System.out.print("Please enter your username");
-        String username = scan.next();
-
-
-        System.out.print("Please enter your password");
-        String password = scan.next();
-
         boolean found = false;
+        while (!found) {
+
+            System.out.print("Please enter your username: ");
+            String username = scan.next();
+
+
+            System.out.print("Please enter your password: ");
+            String password = scan.next();
+
 
             for (User user : users) {
 
@@ -56,8 +57,9 @@ public abstract class User{
                     return;
                 }
             }
-            if ( !found )
+            if (!found)
                 System.out.println("Invalid login, please try again");
+        }
     }
 
 }
