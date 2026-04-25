@@ -2,7 +2,7 @@
 
 title __OOP-PROJ's Class Diagram__\n
 
-   namespace Admin  {
+  namespace Admin {
     class Admin {
         + Admin()
         + add()
@@ -17,7 +17,7 @@ title __OOP-PROJ's Class Diagram__\n
   }
   
 
-   namespace Amenity {
+  namespace Amenity {
     class Amenity {
         - name : String
         + Amenity()
@@ -31,7 +31,7 @@ title __OOP-PROJ's Class Diagram__\n
   }
   
 
-   namespace Database {
+  namespace Database {
     class Database {
         {static} - admins : List<Admin>
         {static} - amenities : List<Amenity>
@@ -74,7 +74,7 @@ title __OOP-PROJ's Class Diagram__\n
   }
   
 
-   namespace Guest {
+  namespace Guest {
     class Guest {
         ~ scan : Scanner
         - address : String
@@ -102,7 +102,7 @@ title __OOP-PROJ's Class Diagram__\n
   }
   
 
-   namespace Genders {
+  namespace Genders {
     enum Genders {
       female
       male
@@ -110,14 +110,21 @@ title __OOP-PROJ's Class Diagram__\n
   }
   
 
-   namespace InvalidPaymentException {
+  namespace InvalidPaymentException {
     class InvalidPaymentException {
         + InvalidPaymentException()
     }
   }
   
 
-   namespace Invoice {
+  namespace InvalidReservationException {
+    class InvalidReservationException {
+        + InvalidReservationException()
+    }
+  }
+  
+
+  namespace Invoice {
     class Invoice {
         - amountPaid : double
         - paymentDate : LocalDate
@@ -137,14 +144,14 @@ title __OOP-PROJ's Class Diagram__\n
   }
   
 
-   namespace Main {
+  namespace Main {
     class Main {
         {static} + main()
     }
   }
   
 
-   namespace Manageable {
+  namespace Manageable {
     interface Manageable {
         {abstract} + add()
         {abstract} + delete()
@@ -154,7 +161,7 @@ title __OOP-PROJ's Class Diagram__\n
   }
   
 
-   namespace Payable {
+  namespace Payable {
     interface Payable {
         {abstract} + isPaid()
         {abstract} + processPayment()
@@ -162,7 +169,7 @@ title __OOP-PROJ's Class Diagram__\n
   }
   
 
-   namespace PaymentMethod {
+  namespace PaymentMethod {
     enum PaymentMethod {
       CASH
       CREDIT_CARD
@@ -171,7 +178,7 @@ title __OOP-PROJ's Class Diagram__\n
   }
   
 
-   namespace Receptionist {
+  namespace Receptionist {
     class Receptionist {
         + Receptionist()
         {static} + login()
@@ -181,7 +188,7 @@ title __OOP-PROJ's Class Diagram__\n
   }
   
 
-   namespace Reservation {
+  namespace Reservation {
     class Reservation {
         - checkInDate : LocalDate
         - checkOutDate : LocalDate
@@ -205,7 +212,7 @@ title __OOP-PROJ's Class Diagram__\n
   }
   
 
-   namespace ReservationStatus {
+  namespace ReservationStatus {
     enum ReservationStatus {
       CANCELLED
       COMPLETED
@@ -215,17 +222,18 @@ title __OOP-PROJ's Class Diagram__\n
   }
   
 
-   namespace ReservationAlreadyCancelledException {
+  namespace ReservationAlreadyCancelledException {
     class ReservationAlreadyCancelledException {
         + ReservationAlreadyCancelledException()
     }
   }
   
 
-   namespace Room {
+  namespace Room {
     class Room {
         {static} + roomCount : int
         - amenities : List<Amenity>
+        - floor : int
         - isAvailable : boolean
         - roomNumber : int
         + Room()
@@ -233,12 +241,14 @@ title __OOP-PROJ's Class Diagram__\n
         + delete()
         + displayRoomDetails()
         + getAmenities()
+        + getFloor()
         + getRoomNumber()
         + getRoomType()
         + isAvailable()
         + read()
         + setAmenities()
         + setAvailable()
+        + setFloor()
         + setRoomType()
         + update()
         - setRoomNumber()
@@ -246,14 +256,14 @@ title __OOP-PROJ's Class Diagram__\n
   }
   
 
-   namespace RoomNotAvailableException {
+  namespace RoomNotAvailableException {
     class RoomNotAvailableException {
         + RoomNotAvailableException()
     }
   }
   
 
-   namespace RoomType {
+  namespace RoomType {
     class RoomType {
         - name : String
         - pricePerNight : double
@@ -270,7 +280,7 @@ title __OOP-PROJ's Class Diagram__\n
   }
   
 
-   namespace Staff {
+  namespace Staff {
     abstract class Staff {
         - workingHours : int
         + Staff()
@@ -282,7 +292,7 @@ title __OOP-PROJ's Class Diagram__\n
   }
   
 
-  namespace  Role {
+  namespace Role {
     enum Role {
       ADMIN
       RECEPTIONIST
@@ -290,7 +300,7 @@ title __OOP-PROJ's Class Diagram__\n
   }
   
 
-   namespace User {
+  namespace User {
     abstract class User {
         - dateOfBirth : LocalDate
         - password : String
@@ -306,7 +316,7 @@ title __OOP-PROJ's Class Diagram__\n
   }
   
 
-   namespace roomPreferences {
+  namespace roomPreferences {
     class roomPreferences {
         - floor : int
         + getFloor()
